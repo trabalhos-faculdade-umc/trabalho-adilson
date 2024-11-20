@@ -21,10 +21,14 @@ public class PesquisaDAO {
             conexao = ConectaDB.conectar();
             Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "INSERT INTO pesquisa(id, nome, tipo, quantidade) VALUES ('" + p_pesq.getId()+
+            String sql = "INSERT INTO pesquisa(id, nome, tipo, quantidade, q1, q2, q3, q4) VALUES ('" + p_pesq.getId()+
                                                                                     "','" + p_pesq.getNome()+
                                                                                     "', '" + p_pesq.getTipo() + 
-                                                                                    "'," + p_pesq.getQuant()+ ")"; 
+                                                                                    "'," + p_pesq.getQuant()+
+                                                                                    "'," + p_pesq.getQ1()+ 
+                                                                                    "," + p_pesq.getQ2()+ 
+                                                                                    "," + p_pesq.getQ3()+ 
+                                                                                    "," + p_pesq.getQ4() + ")"; 
                                                                                      
                          
             stmt.executeUpdate(sql); 
@@ -52,7 +56,11 @@ public class PesquisaDAO {
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
-                pesquisa.setQuant( Integer.parseInt(rs.getString("quantidade")));                   
+                pesquisa.setQuant( Integer.parseInt(rs.getString("quantidade")));
+                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
+                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
+                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
+                pesquisa.setQ4( Integer.parseInt(rs.getString("q4")));
                 registro++;
             }
             conexao.close();
@@ -83,7 +91,11 @@ public class PesquisaDAO {
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
-                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));                                 
+                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
+                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
+                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
+                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
+                pesquisa.setQ4( Integer.parseInt(rs.getString("q4")));
                 registro++;
             }
             conexao.close();
@@ -115,6 +127,10 @@ public class PesquisaDAO {
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
                 pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
+                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
+                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
+                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
+                pesquisa.setQ4( Integer.parseInt(rs.getString("q4")));
                 registro++;
             }
             conexao.close();
@@ -147,7 +163,11 @@ public class PesquisaDAO {
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
-                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));                                 
+                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
+                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
+                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
+                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
+                pesquisa.setQ4( Integer.parseInt(rs.getString("q4")));
                 lista.add(pesquisa);
                 registro++;
             }
@@ -191,7 +211,11 @@ public class PesquisaDAO {
                                               
             String sql = "UPDATE pesquisa SET nome='" + p_pesq.getNome()+ "'" +
                                                     ", tipo='" + p_pesq.getTipo()+ "'" +
-                                                    ", quantidade='" + p_pesq.getQuant()+ "'" + " WHERE pkid = " + p_pesq.getId();
+                                                    ", quantidade='" + p_pesq.getQuant()+ "'" +
+                                                    ", q1=" + p_pesq.getQ1()+ 
+                                                    ", q2=" + p_pesq.getQ2()+ 
+                                                    ", q3=" + p_pesq.getQ3()+ 
+                                                    ", q4=" + p_pesq.getQ4() + " WHERE pkid = " + p_pesq.getId();
                                                                                                                                   
             stmt.executeUpdate(sql); 
                         
