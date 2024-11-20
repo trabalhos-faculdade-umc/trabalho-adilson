@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
 import model.Pesquisa;
@@ -11,30 +7,27 @@ import java.util.ArrayList;
 import util.ConectaDB;
 /**
  *
- * @author alunocmc
+ * @author Juan
  */
 public class PesquisaDAO {
    //Atributos
     // Sem atributos
     
     //Métodos
-   public boolean insPesq(Pesquisa p_pesq) throws ClassNotFoundException {
+   public boolean inserirPesq(Pesquisa p_pesq) throws ClassNotFoundException {
         //Connectar
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
-            Statement stmt = conexao.createStatement();
-                        //INSERT INTO pesquisa(dt_pesq, nome, email, q1, q2, q3, q4) VALUES ('2024-10-23', 'Ana Maria','ana@umc.br', 2, 1, 5, 3);           
+            conexao = ConectaDB.conectar();
+            Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "INSERT INTO pesquisa(dt_pesq, nome, email, q1, q2, q3, q4) VALUES ('" + p_pesq.getDt_pesq()+
+            String sql = "INSERT INTO pesquisa(id, nome, tipo, quantidade) VALUES ('" + p_pesq.getId()+
                                                                                     "','" + p_pesq.getNome()+
-                                                                                    "', '" + p_pesq.getEmail() + 
-                                                                                    "'," + p_pesq.getQ1()+ 
-                                                                                    "," + p_pesq.getQ2()+ 
-                                                                                    "," + p_pesq.getQ3()+ 
-                                                                                    "," + p_pesq.getQ4() + ")";
+                                                                                    "', '" + p_pesq.getTipo() + 
+                                                                                    "'," + p_pesq.getQuant()+ ")"; 
+                                                                                     
                          
-            stmt.executeUpdate(sql); // Executa o SQL: Insert / Delete ou Update
+            stmt.executeUpdate(sql); 
                         
             conexao.close();
             return true;
@@ -44,31 +37,27 @@ public class PesquisaDAO {
         }                 
     }  
     
-   public Pesquisa consPesqReg(Pesquisa pesquisa) throws ClassNotFoundException{
-    //Connectar
+   public Pesquisa consultarPesqNome(Pesquisa pesquisa) throws ClassNotFoundException{
+    
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
             String sql = "SELECT * from pesquisa where nome = '" + pesquisa.getNome() + "'";
-            ResultSet rs = stmt.executeQuery(sql); //GO - Executar - Select
+            ResultSet rs = stmt.executeQuery(sql); 
             
-            int n_reg = 0;
+            int registro = 0;
             while (rs.next()) {   
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
-                pesquisa.setEmail(rs.getString("email"));                
-                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
-                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
-                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
-                pesquisa.setQ4( Integer.parseInt(rs.getString("q4"))); 
-                pesquisa.setDt_pesq(rs.getString("dt_pesq"));  
-                n_reg++;
+                pesquisa.setTipo(rs.getString("tipo"));                
+                pesquisa.setQuant( Integer.parseInt(rs.getString("quantidade")));                   
+                registro++;
             }
             conexao.close();
             
-            if (n_reg==0){
+            if (registro==0){
                 return null;
             }else{
                 return pesquisa;
@@ -79,31 +68,27 @@ public class PesquisaDAO {
         }
     }   
 
-   public Pesquisa consPesqRegId(Pesquisa pesquisa) throws ClassNotFoundException{
-    //Connectar
+   public Pesquisa consultarPesqTipo(Pesquisa pesquisa) throws ClassNotFoundException{
+
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "SELECT * from pesquisa where email = '" + pesquisa.getEmail()+ "'";
-            ResultSet rs = stmt.executeQuery(sql); //GO - Executar - Select
+            String sql = "SELECT * from pesquisa where tipo = '" + pesquisa.getTipo()+ "'";
+            ResultSet rs = stmt.executeQuery(sql); 
             
-            int n_reg = 0;
+            int registro = 0;
             while (rs.next()) {                 
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
-                pesquisa.setEmail(rs.getString("email"));                
-                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
-                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
-                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
-                pesquisa.setQ4( Integer.parseInt(rs.getString("q4"))); 
-                pesquisa.setDt_pesq(rs.getString("dt_pesq"));  
-                n_reg++;
+                pesquisa.setTipo(rs.getString("tipo"));                
+                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));                                 
+                registro++;
             }
             conexao.close();
             
-            if (n_reg==0){
+            if (registro==0){
                 return null;
             }else{
                 return pesquisa;
@@ -114,31 +99,27 @@ public class PesquisaDAO {
         }
     } 
      
-   public Pesquisa consPesqRegIdent(Pesquisa pesquisa) throws ClassNotFoundException{
-    //Connectar
+   public Pesquisa consultarPesqId(Pesquisa pesquisa) throws ClassNotFoundException{
+
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
             String sql = "SELECT * from pesquisa where pkid = '" + pesquisa.getId()+ "'";
-            ResultSet rs = stmt.executeQuery(sql); //GO - Executar - Select
+            ResultSet rs = stmt.executeQuery(sql); 
             
-            int n_reg = 0;
+            int registro = 0;
             while (rs.next()) {                 
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
-                pesquisa.setEmail(rs.getString("email"));                
-                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
-                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
-                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
-                pesquisa.setQ4( Integer.parseInt(rs.getString("q4"))); 
-                pesquisa.setDt_pesq(rs.getString("dt_pesq"));  
-                n_reg++;
+                pesquisa.setTipo(rs.getString("tipo"));                
+                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
+                registro++;
             }
             conexao.close();
             
-            if (n_reg==0){
+            if (registro==0){
                 return null;
             }else{
                 return pesquisa;
@@ -149,34 +130,30 @@ public class PesquisaDAO {
         }
     } 
   
-   public List consPesqLista() throws ClassNotFoundException{
-    //Connectar
-        List lista = new ArrayList(); // Minha Lista
+   public List consultarPesqLista() throws ClassNotFoundException{
+    
+        List lista = new ArrayList(); 
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
             String sql = "SELECT * from pesquisa";
-            ResultSet rs = stmt.executeQuery(sql); //GO - Executar - Select
+            ResultSet rs = stmt.executeQuery(sql); 
             
-            int n_reg = 0;
+            int registro = 0;
             while (rs.next()) {                 
                 Pesquisa pesquisa = new Pesquisa();
                 pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
                 pesquisa.setNome(rs.getString("nome"));  
-                pesquisa.setEmail(rs.getString("email"));                
-                pesquisa.setQ1( Integer.parseInt(rs.getString("q1")));                
-                pesquisa.setQ2( Integer.parseInt(rs.getString("q2")));                
-                pesquisa.setQ3( Integer.parseInt(rs.getString("q3")));                
-                pesquisa.setQ4( Integer.parseInt(rs.getString("q4"))); 
-                pesquisa.setDt_pesq(rs.getString("dt_pesq")); 
+                pesquisa.setTipo(rs.getString("tipo"));                
+                pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));                                 
                 lista.add(pesquisa);
-                n_reg++;
+                registro++;
             }
             conexao.close();
             
-            if (n_reg==0){
+            if (registro==0){
                 return null;
             }else{
                 return lista;
@@ -187,11 +164,11 @@ public class PesquisaDAO {
         }
     }   
    
-   public boolean exPesqId(Pesquisa pesquisa) throws ClassNotFoundException{
-    //Connectar
+   public boolean excluirPesqId(Pesquisa pesquisa) throws ClassNotFoundException{
+    
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
             String sql = "DELETE from pesquisa where pkid = " + pesquisa.getId();
@@ -205,22 +182,18 @@ public class PesquisaDAO {
         }
     } 
    
-   public boolean altPesq(Pesquisa p_pesq) throws ClassNotFoundException {
-        //Connectar
+   public boolean alterarPesq(Pesquisa p_pesq) throws ClassNotFoundException {
+        
         Connection conexao = null;
         try{
-            conexao = ConectaDB.conectar(); // Abre a conexão
+            conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();
-                        //UPDATE pesquisa SET dt_pesq='2024-11-13', nome='Carla', email='carla@umc.br', q1=5, q2=5, q3=5, q4=5 WHERE pkid = 7                      
-            String sql = "UPDATE pesquisa SET dt_pesq='" + p_pesq.getDt_pesq()+ "'" +
-                                                    ", nome='" + p_pesq.getNome()+ "'" +
-                                                    ", email='" + p_pesq.getEmail() + "'" +
-                                                    ", q1=" + p_pesq.getQ1()+ 
-                                                    ", q2=" + p_pesq.getQ2()+ 
-                                                    ", q3=" + p_pesq.getQ3()+ 
-                                                    ", q4=" + p_pesq.getQ4() + " WHERE pkid = " + p_pesq.getId();
-                         
-            stmt.executeUpdate(sql); // Executa o SQL: Insert / Delete ou Update
+                                              
+            String sql = "UPDATE pesquisa SET nome='" + p_pesq.getNome()+ "'" +
+                                                    ", tipo='" + p_pesq.getTipo()+ "'" +
+                                                    ", quantidade='" + p_pesq.getQuant()+ "'" + " WHERE pkid = " + p_pesq.getId();
+                                                                                                                                  
+            stmt.executeUpdate(sql); 
                         
             conexao.close();
             return true;
