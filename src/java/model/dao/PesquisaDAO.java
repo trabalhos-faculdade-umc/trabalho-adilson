@@ -53,7 +53,7 @@ public class PesquisaDAO {
             
             int registro = 0;
             while (rs.next()) {   
-                pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
+                pesquisa.setId(Integer.parseInt(rs.getString("id")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
                 pesquisa.setQuant( Integer.parseInt(rs.getString("quantidade")));
@@ -88,7 +88,7 @@ public class PesquisaDAO {
             
             int registro = 0;
             while (rs.next()) {                 
-                pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
+                pesquisa.setId(Integer.parseInt(rs.getString("id")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
                 pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
@@ -118,12 +118,12 @@ public class PesquisaDAO {
             conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "SELECT * from pesquisa where pkid = '" + pesquisa.getId()+ "'";
+            String sql = "SELECT * from pesquisa where id = '" + pesquisa.getId()+ "'";
             ResultSet rs = stmt.executeQuery(sql); 
             
             int registro = 0;
             while (rs.next()) {                 
-                pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
+                pesquisa.setId(Integer.parseInt(rs.getString("id")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
                 pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
@@ -160,7 +160,7 @@ public class PesquisaDAO {
             int registro = 0;
             while (rs.next()) {                 
                 Pesquisa pesquisa = new Pesquisa();
-                pesquisa.setId(Integer.parseInt(rs.getString("pkid")));  
+                pesquisa.setId(Integer.parseInt(rs.getString("id")));  
                 pesquisa.setNome(rs.getString("nome"));  
                 pesquisa.setTipo(rs.getString("tipo"));                
                 pesquisa.setQuant(Integer.parseInt(rs.getString("quantidade")));
@@ -191,7 +191,7 @@ public class PesquisaDAO {
             conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "DELETE from pesquisa where pkid = " + pesquisa.getId();
+            String sql = "DELETE from pesquisa where id = " + pesquisa.getId();
             stmt.executeUpdate(sql);            
             conexao.close();            
             return true;
@@ -215,7 +215,7 @@ public class PesquisaDAO {
                                                     ", q1=" + p_pesq.getQ1()+ 
                                                     ", q2=" + p_pesq.getQ2()+ 
                                                     ", q3=" + p_pesq.getQ3()+ 
-                                                    ", q4=" + p_pesq.getQ4() + " WHERE pkid = " + p_pesq.getId();
+                                                    ", q4=" + p_pesq.getQ4() + " WHERE id = " + p_pesq.getId();
                                                                                                                                   
             stmt.executeUpdate(sql); 
                         
