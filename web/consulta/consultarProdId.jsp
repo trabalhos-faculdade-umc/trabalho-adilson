@@ -19,9 +19,9 @@
         ProdutoDAO prodDAO = new ProdutoDAO();
         if(prodDAO.consultarProdId(prod) != null){
                 out.println("<br> <b>Produto</b> <br>");
-                out.println("<br> Questão 1: " + prod.getId());
+                out.println("<br> ID: " + prod.getId());
                 out.println("<br> Nome: " + prod.getNome());
-                out.println("<br> Questão 2: " + prod.getQuant());                                                     
+                out.println("<br> Quantidade: " + prod.getQuant());                                                     
         }else{
                out.println("Produto não encontrado!!!");
         }       
