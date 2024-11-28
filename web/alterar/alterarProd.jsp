@@ -16,7 +16,7 @@
             
             int id = Integer.parseInt( request.getParameter("id") );
             String nome = request.getParameter("nome");            
-            int quant = request.getParameter("quantidade");
+            int quant = Integer.parseInt(request.getParameter("quantidade"));
 
 
             

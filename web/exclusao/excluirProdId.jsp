@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="model.ProdutoS"%>
+<%@page import="model.Produtos"%>
 <%@page import="model.dao.ProdutoDAO"%>
 
 <!DOCTYPE html>

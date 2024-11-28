@@ -1,14 +1,19 @@
 <html>
     <head>
-        <title>Pesquisa</title>
+        <title>Excluir - Produto</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
- <h1>Pesquisa de Qualidade - Exclusão (Id)</h1>       
-        <form name="frmPesq" method="post" action="exclPesqId.jsp">
-            Digite a Identificação: <input type="text" name="id"> <p>                            
-            <input type="submit" value="Apagar">
-        </form> 
+        <div style="display: grid; justify-content: center; text-align:  center;">
+            <h2>Excluir Produtos</h2>       
+            <form class="container" name="frmProd" method="post" action="excluirPesqId.jsp">
+                <div class="container-input">
+                    Digite o ID: <input type="text" name="id">
+                </div>
+                <input class="btn" type="submit" value="Apagar">
+            </form>
+        </div>
     </body>
 </html>

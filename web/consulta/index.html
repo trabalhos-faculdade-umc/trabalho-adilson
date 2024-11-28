@@ -1,15 +1,19 @@
 <html>
     <head>
-        <title>Empresa - Pesquisa</title>
+        <title>Produto - Pesquisa</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
- <h1>Pesquisa de Qualidade - Consulta (Registro)</h1>       
-        <form name="frmPesq" method="post" action="consultaNome.jsp">
-            Digite o Nome: <input type="text" name="nome"> <p>                               
-                
-            <input type="submit" value="Consultar">
-        </form> 
+        <div style="display: grid; justify-content: center; text-align:  center;">
+            <h2>Consultar Produtos</h2>       
+            <form class="container" name="frmPesq" method="post" action="consultaProdId.jsp">
+                <div class="container-input">
+                     ID do produto: <input type="text" name="id">
+                </div>
+                <input  class="btn" type="submit" value="Consultar">
+            </form> 
+        </div>
     </body>
 </html>

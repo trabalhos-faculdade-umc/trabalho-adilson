@@ -19,7 +19,7 @@ a {
 
 .container {
     display: grid;
-    justify-items: flex-start;
+    justify-items: center;
 }
 
 .btn {
@@ -28,9 +28,19 @@ a {
     background-color: #96bae5;
     border: 1px solid #85b0e3;
     border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .btn:hover {
     background-color: #539aef;
     border: 1px solid #85b0e3;
+}
+
+.container-input {
+     display: flex;
+    justify-content: space-between;
+    width: 20rem;
+    margin: 0.5rem;
 }
