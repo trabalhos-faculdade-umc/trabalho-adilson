@@ -65,7 +65,7 @@ public class ProdutoDAO {
             conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();                                   
                         
-            String sql = "DELETE from produtos where id = " + produtos.getId();
+            String sql = "DELETE from produto where id = " + produtos.getId();
             stmt.executeUpdate(sql);            
             conexao.close();            
             return true;
@@ -83,7 +83,7 @@ public class ProdutoDAO {
             conexao = ConectaDB.conectar(); 
             Statement stmt = conexao.createStatement();
                                               
-            String sql = "UPDATE produtos SET nome='" + produtos.getNome()+ "'" +
+            String sql = "UPDATE produto SET nome='" + produtos.getNome()+ "'" +
                                                     ", quantidade='" + produtos.getQuant()+ "'" +
                                                        " WHERE id = " + produtos.getId();
                                                                                                                                   
